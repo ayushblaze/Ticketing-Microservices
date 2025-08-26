@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy: # Lists out all the different config files we want to load into our cluster
+  kubectl:
+    manifests: # List out all the files we want to make use of
+      - ./infra/k8s/*
+build:
+  local:
+    push: false # When we create an image do not try to push it to docker hub (default behaviour)
+  artifacts:
+    - image: ayushblaze/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/.ts" # Look for changes in all the files inside src folder ending with .ts
+            dest: .
