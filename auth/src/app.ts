@@ -13,7 +13,8 @@ app.set('trust proxy', true); // since traffic is coming from the nginx proxy, e
 app.use(express.json());
 app.use(cookieSession({
   signed: false, // not needed since JWT itself is cryptographically signed and verified
-  secure: true, // only send cookies over https connection
+  // secure: true, // only send cookies over https connection
+  secure: process.env.NODE_ENV !== 'test'
 }));
 
 app.use(currentUserRouter);
