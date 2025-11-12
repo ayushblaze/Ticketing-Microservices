@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev src/index.ts",
-    "test": "jest --watchAll --no-cache",
-    "test:ci": "jest"
+    "test": "MONGO_BINARY_VERSION=6.0.4 jest --watchAll --no-cache",
+    "test:ci": "MONGO_BINARY_VERSION=6.0.4 jest"
   },
   "jest": {
     "preset": "ts-jest",
