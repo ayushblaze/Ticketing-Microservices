@@ -16,3 +16,11 @@ build:
         manual:
           - src: "src/**/.ts" # Look for changes in all the files inside src folder ending with .ts
             dest: .
+    - image: ayushblaze/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
