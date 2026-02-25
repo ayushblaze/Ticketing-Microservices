@@ -1,12 +1,23 @@
 import { useState } from "react"
+import axios from "axios"
+import useRequest from "../../hooks/use-request"
 
 export default () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const { doRequest, errors } = useRequest({
+        url: "/api/users/signup",
+        method: "post",
+        body: {
+            email, password
+        }
+    });    
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(email, password)
+        console.log(email, password);
+
+       doRequest();
     }
 
     return (
@@ -20,6 +31,7 @@ export default () => {
                 <label>Password</label>
                 <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
+            {errors}
             <button className="btn btn-primary">Sign Up</button>
         </form>
     )
