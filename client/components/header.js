@@ -8,16 +8,18 @@ export default ({ currentUser }) => {
         currentUser && { label: 'Sign Out', href: '/auth/signout' },
     ]
         .filter(linkConfig => linkConfig)
-        .map(({label, href}) => {
+        .map(({ label, href }) => {
             return <li key={href}>
-                {label}
+                <Link href={href} className="nav-link">
+                    {label}
+                </Link>
             </li>;
         });
 
 
     return <nav className="navbar navbar-light bg-light">
         <Link href='/' className="navbar-brand">
-           GitTix
+            GitTix
         </Link>
 
         <div className="d-flex justify-content-end">
